@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YX 工作台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f1f5f9;
+            min-height: 100vh;
+            padding: 30px 20px;
+            color: #334155;
+        }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+
+        .top {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            padding: 14px 24px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .top::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.04);
+        }
+        .top::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: 60px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.03);
+        }
+        .top h1 {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        .top .date {
+            color: #fbbf24;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+
+        .block {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+        }
+        .block-head {
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e3a5f;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .level {
+            padding: 0 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .level:last-child { border-bottom: none; }
+        .level-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 0 6px;
+        }
+        .l-red { color: #dc2626; }
+        .l-orange { color: #ea580c; }
+        .l-blue { color: #0369a1; }
+        .l-gray { color: #94a3b8; }
+
+        .card {
+            padding: 12px 0 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .card:last-child { border-bottom: none; }
+        .card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        .card-title .num {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #fff;
+            margin-right: 6px;
+        }
+        .n1 { background: #1e3a5f; }
+        .n2 { background: #3b82f6; }
+        .n3 { background: #f59e0b; }
+        .card-remark {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+        .card-progress {
+            font-size: 11px;
+            color: #0f766e;
+            background: #f0fdfa;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: #94a3b8;
+            flex-wrap: wrap;
+        }
+        .card-meta span { white-space: nowrap; }
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 11px;
+        }
+        .pill-red { background: #fee2e2; color: #b91c1c; }
+        .pill-orange { background: #ffedd5; color: #c2410c; }
+        .pill-blue { background: #dbeafe; color: #1d4ed8; }
+        .pill-gray { background: #f1f5f9; color: #64748b; }
+        .blink { animation: blink 2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+        .log-table {
+            width: 100%;
+            font-size: 11px;
+            border-collapse: collapse;
+        }
+        .log-table th {
+            text-align: left;
+            padding: 6px 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .log-table td {
+            padding: 8px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        .log-table .next-row td {
+            color: #c2410c;
+            font-weight: 500;
+            background: #fffbeb;
+        }
+
+        .idea-list {
+            list-style: none;
+        }
+        .idea-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 12px;
+            color: #475569;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        .idea-list li:last-child { border-bottom: none; }
+        .idea-list .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #94a3b8;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 700px) { .g2 { grid-template-columns: 1fr; } }
+
+        .foot {
+            text-align: center;
+            padding: 16px;
+            color: #94a3b8;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="top">
+        <h1>YX 工作台 <span class="date">2026.05.12 周二 · 国际护士节</span></h1>
+    </div>
+
+    <div class="g2">
+        <div>
+            <div class="block">
+                <div class="block-head">🦾 RK3688 当前重点</div>
+                <div class="level">
+                    <div class="card">
+                        <div class="card-title"><span class="num n1">1</span>n to 1 bridge 验证</div>
+                        <div class="card-remark">确保 bridge 功能正确，移植带数据检查的 case。与 FlexNoc 测试数据作比对，确保 bridge 不造成性能损失</div>
+                        <div class="card-progress">📌 单 ISP 乒乓 buffer 测试已跑通，不再出现损失。ISP/RGA/VDPP 3 IP 测试 zebu 快跑完，明天统计数据</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.5 — 5.26</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><span class="num n2">2</span>bus monitor 性能 trace 方案</div>
+                        <div class="card-remark">区分 IP 侧/RP/DDR/SLC-MMU 瓶颈，trace 单笔 transaction 完整路径，定位性能瓶颈</div>
+                        <div class="card-progress">📌 已提前开始，Claude 写了一版代码，明天集成。代码路径：bus_mon_trace</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">6.22 — 7.15</span>
+                            <span>负责人：yx、zwj</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><span class="num n3">3</span>si-tower 移植兼容 FlexNoc + zebu 资源评估</div>
+                        <div class="card-remark">考虑 si-tower 移植问题，兼容 FlexNoc；3688 zebu 编译资源评估</div>
+                        <div class="card-progress">📌 等柏春哥给 mars 版本，他说要一两天</div>
+                        <div class="card-meta">
+                            <span class="pill pill-red blink">5.11 — 5.18</span>
+                            <span>负责人：yx、xwh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-head">📋 RK3688 其余任务</div>
+                <div class="level">
+                    <div class="level-tag l-orange">🟠 下周截止</div>
+                    <div class="card">
+                        <div class="card-title">ISP 多 master 调研（优先级、仲裁策略）</div>
+                        <div class="card-remark">提早进行 ISP 可能出现的问题调研和准备：ISP 划分了多少个 master 接口，互相谁更优先？在 ntom bv 环境中分析多 master 的仲裁策略是否合理</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.11 — 5.25</span>
+                            <span>负责人：zwj、yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">lp6 的 mars 搭建方案 + 新特性表</div>
+                        <div class="card-remark">lp6 的 mars 搭建方案，bv 验证方案，列出 lp6 新特性 excel 表</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.11 — 5.25</span>
+                            <span>负责人：wzg、yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">si-tower 的 mars 搭建方案 + 新特性表</div>
+                        <div class="card-remark">列出 si-tower 新特性表</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.11 — 5.25</span>
+                            <span>负责人：zbc、zwj</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-blue">🟡 需跟进</div>
+                    <div class="card">
+                        <div class="card-title">si-tower 评估</div>
+                        <div class="card-remark">预研 si-tower 的新特性，latency 和带宽摸底，确保 Noc 参数配置的正确性</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">4.1 — 5.29</span>
+                            <span>负责人：zwj</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">lp6/lp5 移植</div>
+                        <div class="card-remark">level1 中移植 lp6/lp5，同时作为 ddr 的 bv 环境，可支持跑合见测试</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">5.11 — 6.16</span>
+                            <span>负责人：zwj、wzg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-gray">🔮 后续</div>
+                    <div class="card">
+                        <div class="card-title">mars 中移植 si-tower+lp5 环境，调通 base case</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">5.18 — 6.22</span>
+                            <span>负责人：yx、xwh</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">合见/帕拉丁中移植 lp6 环境，调通 base case</div>
+                        <div class="card-remark">合见平台看波形不好抓，后续不好 debug。level1 中 lp6 完成后开始</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">6.16 — 7.15</span>
+                            <span>负责人：wzg、yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">IP 性能需求表修改（动态 OT 配置思路）</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">6.22 — 7.15</span>
+                            <span>负责人：zwj</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">shaping 功能替代方案（urgent/mask 模块）</div>
+                        <div class="card-remark">si-tower 没有 shaping 功能，需在 noc 和控制器间加 urgent/mask 模块做替代</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">— 7.15</span>
+                            <span>负责人：all</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-head">💭 想法备忘录</div>
+                <ul class="idea-list">
+                    <li><span class="dot"></span>用 Cursor 改进 bus mon 代码，用 API 时要安装 cc switch</li>
+                    <li><span class="dot"></span>给贾维斯设置：一次只打开一个网页</li>
+                    <li><span class="dot"></span>贾维斯 lp6 学习计划还要继续推进</li>
+                    <li><span class="dot"></span>底层平台他们周六搬到 17 号楼</li>
+                    <li><span class="dot"></span>支付宝基金 → 6月5日看看能不能卖出</li>
+                    <li><span class="dot"></span>移动手机号 → 6月30日前换套餐</li>
+                    <li><span class="dot"></span>微信 09 一中校友信息 → 需要回复</li>
+                    <li><span class="dot"></span>每周六晚上问陈皓这周有没有桌游局</li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <div class="block">
+                <div class="block-head">📦 个人事务</div>
+                <div class="level">
+                    <div class="level-tag l-orange">🟠 待处理</div>
+                    <div class="card">
+                        <div class="card-title">中级职称材料提交</div>
+                        <div class="card-remark">政府申报材料，下班前提交</div>
+                        <div class="card-progress">📌 明天仔细看邮件要求</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.20（周三）</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">平潭报销经费到账确认</div>
+                        <div class="card-remark">预计到账日期，查银行记录</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.15（周五）</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">LM 生日</div>
+                        <div class="card-remark">提前准备</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">5.21（周四）</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-blue">🟡 即将到期</div>
+                    <div class="card">
+                        <div class="card-title">找爸爸搬椅子到公司</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">5.17（周日）下午</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">京东 G7 Pro 显示器发货进度查询</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">5.14（周四）</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-gray">ℹ️ 备忘</div>
+                    <div class="card">
+                        <div class="card-title">3A 审核结果</div>
+                        <div class="card-remark">5.10 前应通知结果，至今未收到通知，估计已黄</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">5.10 已过期</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-head">🏫 瑞芯微班授课记录</div>
+                <div class="level">
+                    <div class="level-tag l-orange">📅 上课安排：每 2 周周一 21:00 — 22:00</div>
+                    <div class="card">
+                        <div class="card-title">下一次上课：5.25（周一）21:00</div>
+                        <div class="card-remark">给 yxq 上课，讨论 testplan</div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-gray">📝 已上课记录</div>
+                    <table class="log-table">
+                        <tr><th>日期</th><th>时间</th><th>内容</th></tr>
+                        <tr><td>4.27（周一）</td><td>21:00 — 21:30</td><td>初次会谈，分配任务</td></tr>
+                        <tr><td>5.11（周一）</td><td>21:00 — 22:00</td><td>查看小模块的验证情况，讨论 testplan</td></tr>
+                        <tr class="next-row"><td>5.25（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>6.8（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>6.22（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>7.6（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>7.20（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>8.3（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>8.17（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr><td>8.31（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot">页面由 贾维斯 自动维护</div>
+</div>
+</body>
+</html>
