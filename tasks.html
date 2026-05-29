@@ -301,9 +301,9 @@
                     <div class="card">
                         <div class="card-title"><span class="num n1">1</span>n to 1 bridge 验证</div>
                         <div class="card-remark">确保 bridge 功能正确，移植带数据检查的 case。与 FlexNoc 测试数据作比对，确保 bridge 不造成性能损失</div>
-                        <div class="card-progress">✅ 5.14 QoS 测试结论：仅用 QoS 分配带宽较生硬。⚠️ 修改完 narrow 传输问题后，RKDMA 仍然 fail。📌 待办：配置饿死阈值再测试 + 统计数据</div>
+                        <div class="card-progress">✅ 64bit/16bit narrow 传输问题已彻底解决，RKDMA 已调通，n to 1 收尾完成。📌 等待 ni-tower 替换方案</div>
                         <div class="card-meta">
-                            <span class="pill pill-gray">5.5 — 5.26 已过期</span>
+                            <span class="pill pill-green">✅ 5.29 收尾完成</span>
                             <span>负责人：yx</span>
                         </div>
                     </div>
@@ -319,7 +319,7 @@
                     <div class="card">
                         <div class="card-title"><span class="num n3">3</span>si-tower 移植兼容 FlexNoc + zebu 资源评估</div>
                         <div class="card-remark">考虑 si-tower 移植问题，兼容 FlexNoc；3688 zebu 编译资源评估</div>
-                        <div class="card-progress">✅ gxy 已给版本，待我进行移植</div>
+                        <div class="card-progress">📌 环境变量调通，noc_sys 集成正在修改</div>
                         <div class="card-meta">
                             <span class="pill pill-green">✅ 5.18 完成</span>
                             <span>负责人：yx、xwh</span>
@@ -365,7 +365,7 @@
                     <div class="card">
                         <div class="card-title">si-tower 评估</div>
                         <div class="card-remark">预研 si-tower 的新特性，latency 和带宽摸底，确保 Noc 参数配置的正确性</div>
-                        <div class="card-progress">📌 si level1 进度：待跟进</div>
+                        <div class="card-progress">📌 lp5 687 频点已达高频，zwj 继续验证 level1</div>
                         <div class="card-meta">
                             <span class="pill pill-orange">4.1 — 5.29 今天截止</span>
                             <span>负责人：zwj</span>
@@ -377,6 +377,41 @@
                         <div class="card-meta">
                             <span class="pill pill-blue">5.11 — 6.16</span>
                             <span>负责人：zwj、wzg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-orange">🟠 进行中</div>
+                    <div class="card">
+                        <div class="card-title">CPU benchmark</div>
+                        <div class="card-remark">北京已初步调通 SV，等待 mars si 集成完成后移植 CPU，之后软件介入测试</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">进行中</span>
+                            <span>负责人：yx、北京</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">lp6 进度</div>
+                        <div class="card-remark">北京预计 2 周后完成</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">进行中</span>
+                            <span>负责人：北京</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">MCN timing 卡 800MHz</div>
+                        <div class="card-remark">改 floorplan，等待 gxy 反馈，可能要一周</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">待反馈</span>
+                            <span>负责人：gxy</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">地址路由方案</div>
+                        <div class="card-remark">继续按方案 2 进行</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">进行中</span>
+                            <span>负责人：xwh、gxy</span>
                         </div>
                     </div>
                 </div>
