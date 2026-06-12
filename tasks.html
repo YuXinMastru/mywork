@@ -299,7 +299,17 @@
                 <div class="block-head">🦾 RK3688 当前重点</div>
                 <div class="level">
                     <div class="card">
-                        <div class="card-title"><span class="num n1">1</span>在关闭 MCN 交织版本上继续移植 mars</div>
+                        <div class="card-title"><span class="num n1">1</span>ISP cache 问题 + si center 配置问题</div>
+                        <div class="card-remark">① ISP cache 问题：等 gxy 回 s0-s7 GTID 使能的版本后再测<br>② si center 不能配置：sv 波形已给 gxy，等他改<br>③ 两个问题一起改完后一起编固件</div>
+                        <div class="card-meta">
+                            <span class="pill pill-red">🔥 第一优先级</span>
+                            <span class="pill pill-orange">等 gxy 反馈</span>
+                            <span>负责人：gxy、yx</span>
+                            <span>6.12 记录</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><span class="num n2">2</span>在关闭 MCN 交织版本上继续移植 mars</div>
                         <div class="card-remark">基于 gxy 提供的关闭 mcn 交织版本，继续 mars 移植工作</div>
                         <div class="card-progress">📌 第二优先级</div>
                         <div class="card-meta">
@@ -308,7 +318,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-title"><span class="num n2">2</span>bus monitor 性能 trace 方案</div>
+                        <div class="card-title"><span class="num n3">3</span>bus monitor 性能 trace 方案</div>
                         <div class="card-remark">区分 IP 侧/RP/DDR/SLC-MMU 瓶颈，trace 单笔 transaction 完整路径，定位性能瓶颈</div>
                         <div class="card-progress">📌 已提前开始，Claude 写了一版代码。待办：集成测试（代码路径：bus_mon_trace）</div>
                         <div class="card-meta">
@@ -404,15 +414,6 @@
                         <div class="card-meta">
                             <span class="pill pill-blue">进行中</span>
                             <span>负责人：xwh、gxy</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">ISP cache 问题 + si center 配置问题</div>
-                        <div class="card-remark">① ISP cache 问题：等 gxy 回 s0-s7 GTID 使能的版本后再测<br>② si center 不能配置：sv 波形已给 gxy，等他改<br>③ 两个问题一起改完后一起编固件</div>
-                        <div class="card-meta">
-                            <span class="pill pill-orange">等 gxy 反馈</span>
-                            <span>负责人：gxy、yx</span>
-                            <span>6.12 记录</span>
                         </div>
                     </div>
                 </div>
