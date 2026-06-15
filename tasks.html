@@ -213,6 +213,7 @@
         .pill-blue { background: #dbeafe; color: #1d4ed8; }
         .pill-gray { background: #f1f5f9; color: #64748b; }
         .pill-green { background: #d1fae5; color: #047857; }
+        .pill-purple { background: #ede9fe; color: #6d28d9; }
         .blink { animation: blink 2s infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.5} }
 
@@ -295,6 +296,8 @@
 
     <div class="g2">
         <div>
+            <!-- 左栏：工作区 -->
+
             <div class="block">
                 <div class="block-head">🦾 RK3688 当前重点</div>
                 <div class="level">
@@ -309,21 +312,48 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-title"><span class="num n2">2</span>在关闭 MCN 交织版本上继续移植 mars</div>
+                        <div class="card-title"><span class="num n2">2</span>查 ISP 低频帧率降低原因</div>
+                        <div class="card-remark">ISP 在低频下帧率下降，需定位是带宽瓶颈还是配置问题</div>
+                        <div class="card-meta">
+                            <span class="pill pill-red">🔥 紧急</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><span class="num n3">3</span>在关闭 MCN 交织版本上继续移植 mars</div>
                         <div class="card-remark">基于 gxy 提供的关闭 mcn 交织版本，继续 mars 移植工作</div>
-                        <div class="card-progress">📌 第二优先级</div>
                         <div class="card-meta">
                             <span class="pill pill-orange">📌 第二优先级</span>
                             <span>负责人：yx</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-head">🧩 AXI→AHB Bridge 新模块</div>
+                <div class="level">
+                    <div class="level-tag l-orange">🟠 新增 — 纳入蒋茜 3 个月计划</div>
                     <div class="card">
-                        <div class="card-title"><span class="num n3">3</span>bus monitor 性能 trace 方案</div>
-                        <div class="card-remark">区分 IP 侧/RP/DDR/SLC-MMU 瓶颈，trace 单笔 transaction 完整路径，定位性能瓶颈</div>
-                        <div class="card-progress">📌 已提前开始，Claude 写了一版代码。待办：集成测试（代码路径：bus_mon_trace）</div>
+                        <div class="card-title">AXI 协议转 AHB 模块</div>
+                        <div class="card-remark">新增 AXI-to-AHB Bridge，目标 9 月中随 IP Release 交付</div>
+                        <div class="card-progress">📅 计划周期：6.15 — 9.15（约 13 周）</div>
                         <div class="card-meta">
-                            <span class="pill pill-blue">6.22 — 7.15</span>
-                            <span>负责人：yx、zwj</span>
+                            <span class="pill pill-purple">🆕 新增模块</span>
+                            <span>负责人：蒋茜</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">蒋茜 3 个月 IP Release 计划</div>
+                        <div class="card-remark">
+                            ① 需求分析与设计（W1-W3，6.15-7.05）：协议分析 → 微架构 → 评审<br>
+                            ② RTL 开发（W4-W7，7.06-8.02）：Bridge 编码 → 接口完善 → lint → 集成<br>
+                            ③ 验证与收敛（W8-W11，8.03-8.30）：模块级验证 → 系统联调 → 覆盖率收敛 → 时序收敛<br>
+                            ④ Release 准备（W12-W13，8.31-9.15）：最终回归 + 文档 → 签核交付
+                        </div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">📅 6.15 — 9.15</span>
+                            <span>负责人：蒋茜</span>
                         </div>
                     </div>
                 </div>
@@ -332,14 +362,7 @@
             <div class="block">
                 <div class="block-head">📋 RK3688 其余任务</div>
                 <div class="level">
-                    <div class="level-tag l-orange">🟠 下周截止</div>
-                    </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="level">
                     <div class="level-tag l-blue">🟡 需跟进</div>
-                    </div>
                     <div class="card">
                         <div class="card-title">lp6/lp5 移植</div>
                         <div class="card-remark">level1 中移植 lp6/lp5，同时作为 ddr 的 bv 环境，可支持跑合见测试</div>
@@ -352,6 +375,15 @@
                 </div>
                 <div class="level">
                     <div class="level-tag l-orange">🟠 进行中</div>
+                    <div class="card">
+                        <div class="card-title">bus monitor 性能 trace 方案</div>
+                        <div class="card-remark">区分 IP 侧/RP/DDR/SLC-MMU 瓶颈，trace 单笔 transaction 完整路径，定位性能瓶颈</div>
+                        <div class="card-progress">📌 已提前开始，Claude 写了一版代码。待办：集成测试</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">6.22 — 7.15</span>
+                            <span>负责人：yx、zwj</span>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-title">CPU benchmark</div>
                         <div class="card-remark">北京已初步调通 SV，等待 mars si 集成完成后移植 CPU，之后软件介入测试</div>
@@ -421,28 +453,40 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div>
+            <!-- 右栏：个人 & 授课 -->
+
             <div class="block">
                 <div class="block-head">📦 个人事务</div>
                 <div class="level">
+                    <div class="level-tag l-red">🔴 紧急待办</div>
+                    <div class="card">
+                        <div class="card-title">💳 花呗还款</div>
+                        <div class="card-remark">① 花呗还 2.6w<br>② 周二（6.16）还 6w</div>
+                        <div class="card-meta">
+                            <span class="pill pill-red blink">⚠️ 本周必须还</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
                     <div class="level-tag l-orange">🟠 待处理</div>
+                    <div class="card">
+                        <div class="card-title">🅿️ 租车位 — 已租 7 号楼</div>
+                        <div class="card-remark">已租 7 号楼车位，租期：6 月 15 日 — 8 月 15 日</div>
+                        <div class="card-meta">
+                            <span class="pill pill-green">✅ 已租</span>
+                            <span>6.15 — 8.15</span>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-title">中级职称材料提交</div>
                         <div class="card-remark">✅ 材料已提交完成，等待 6 月现场审核后发邮件</div>
                         <div class="card-progress">🎉 已完成 - 等待现场审核</div>
                         <div class="card-meta">
                             <span class="pill pill-green">✅ 已完成</span>
-                            <span>负责人：yx</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">租车位</div>
-                        <div class="card-remark">预计 7 月 10 号后使用</div>
-                        <div class="card-meta">
-                            <span class="pill pill-blue">待处理</span>
-                            <span>负责人：yx</span>
                         </div>
                     </div>
                     <div class="card">
@@ -450,7 +494,6 @@
                         <div class="card-remark">✅ 已发货（快吃完的时候再买 2 盒 4kg，一盒 2kg）</div>
                         <div class="card-meta">
                             <span class="pill pill-green">✅ 已发货</span>
-                            <span>负责人：yx</span>
                         </div>
                     </div>
                 </div>
@@ -461,7 +504,7 @@
                 <ul class="idea-list">
                     <li><span class="dot"></span>移动手机号 → 6月30日前换套餐</li>
                     <li><span class="dot"></span>每周六晚上问陈皓这周有没有桌游局</li>
-                    </ul>
+                </ul>
             </div>
 
             <div class="block">
@@ -481,7 +524,7 @@
                         <tr><td>5.11（周一）</td><td>21:00 — 22:00</td><td>查看小模块的验证情况，讨论 testplan</td></tr>
                         <tr><td>5.25（周一）</td><td>21:00 — 22:00</td><td>讨论 testplan</td></tr>
                         <tr><td>6.8（周一）</td><td>21:00 — 22:00</td><td>讲解 UVM 验证环境，讨论后续安排</td></tr>
-                        <tr><td>6.22（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
+                        <tr class="next-row"><td>6.22（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
                         <tr><td>7.6（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
                         <tr><td>7.20（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
                         <tr><td>8.3（周一）</td><td>21:00 — 22:00</td><td>待定</td></tr>
@@ -490,6 +533,7 @@
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -510,4 +554,3 @@ function check() {
 </script>
 </body>
 </html>
-
