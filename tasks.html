@@ -301,23 +301,64 @@
             <div class="block">
                 <div class="block-head">🦾 RK3688 当前重点</div>
                 <div class="level">
-
+                    <div class="level-tag l-red">🔴 紧急 — 本周内完成</div>
                     <div class="card">
-                        <div class="card-title"><span class="num n2">2</span>查 ISP 低频帧率降低原因</div>
-                        <div class="card-remark">ISP 在低频下帧率下降，需定位是带宽瓶颈还是配置问题</div>
-                        <div class="card-remark">📎 DDR S6 的 AR rdy 拉低可能是 OT 不够，查寄存器/YAML 看现在配的多少</div>
-                        <div class="card-remark">🔄 正在尝试跑 level1</div>
+                        <div class="card-title"><span class="num n1">1</span>Mars DDR 单通道→4 通道交织扩展</div>
+                        <div class="card-remark">Mars 中 DDR 单通道拓展为 4 通道交织，本周内完成</div>
                         <div class="card-meta">
-                            <span class="pill pill-red">🔥 紧急</span>
+                            <span class="pill pill-red">🔥 本周截止</span>
                             <span>负责人：yx</span>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-title"><span class="num n3">3</span>shaping 功能替代方案（urgent/mask 模块）</div>
-                        <div class="card-remark">si-tower 没有 shaping 功能，需在 noc 和控制器间加 urgent/mask 模块做替代。要求 Nto1 的 owner 去评估</div>
+                        <div class="card-title"><span class="num n2">2</span>ISP 第一版 RTL 性能仿真</div>
+                        <div class="card-remark">ISP 已有第一版 RTL，已具备性能测试条件，Mars 中开始进行移植和性能仿真</div>
                         <div class="card-meta">
-                            <span class="pill pill-orange">📌 第三优先级</span>
-                            <span>负责人：Nto1 owner</span>
+                            <span class="pill pill-red">🔥 进行中</span>
+                            <span>负责人：yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><span class="num n3">3</span>Mars V2 版本设计启动</div>
+                        <div class="card-remark">V2 不再兼容 FlexNoc，IP 数量及寄存器配置空间按 3688 体量规划，考虑 si+lp6 需求</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">📌 6.23 — 7.14</span>
+                            <span>负责人：xwh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="level">
+                    <div class="level-tag l-orange">🟠 进行中</div>
+                    <div class="card">
+                        <div class="card-title">nto1 OT 限制功能开发</div>
+                        <div class="card-remark">nto1 不造成带宽损失，但为实现 IP 间带宽分配，已推动 owner 为每个输入 IP 增加 OT 限制功能。待 owner 出第一版代码</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">6.23 — 7.14</span>
+                            <span>负责人：yx、leihong</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">level1 si+lp5 详细分析</div>
+                        <div class="card-remark">level1 已完成 si+lp5 初步评估，详细分析进行中。Mars 中 si-lp5 摸底：isp/rga/vdpp DDR 高频可跑满最大 fps，低频 fps 损失约 10%，原因可能在 MCN 部分</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">进行中</span>
+                            <span>负责人：zwj</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">邮件询问各 IP 性能 case 提供时间</div>
+                        <div class="card-remark">询问各 IP 能够提供性能 case 的最早时间</div>
+                        <div class="card-meta">
+                            <span class="pill pill-orange">📌 待发</span>
+                            <span>负责人：xwh</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">CPU benchmark 性能仿真讨论</div>
+                        <div class="card-remark">今天下午开会讨论 CPU benchmark 的具体性能仿真事项</div>
+                        <div class="card-meta">
+                            <span class="pill pill-red">🔥 今天下午</span>
+                            <span>负责人：xwh</span>
                         </div>
                     </div>
                 </div>
@@ -354,15 +395,30 @@
 
             <div class="block">
                 <div class="block-head">📋 RK3688 其余任务</div>
-                <div class="level">
+                                <div class="level">
                     <div class="level-tag l-blue">🟡 需跟进</div>
                     <div class="card">
-                        <div class="card-title">lp6/lp5 移植</div>
-                        <div class="card-remark">level1 中移植 lp6/lp5，同时作为 ddr 的 bv 环境，可支持跑合见测试</div>
-                        <div class="card-progress">✅ lp5 编译和 arm sample 已跑通</div>
+                        <div class="card-title">lp6 移植（level1）</div>
+                        <div class="card-remark">北京 lp6 基础环境已准备好，level1 中开始移植。期望北京用真实 phy 后再进行</div>
                         <div class="card-meta">
-                            <span class="pill pill-green">✅ lp5 编译+arm sample 跑通</span>
-                            <span>负责人：zwj、wzg</span>
+                            <span class="pill pill-blue">6.23 — 7.14</span>
+                            <span>负责人：zwj、北京</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">ISP 问题调研</div>
+                        <div class="card-remark">ISP 划分了多少个 master 接口？仲裁策略是否合理？移植 ISP 期间进行讨论</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">6.23 — 6.30</span>
+                            <span>负责人：zwj、yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">IP 性能需求表修改</div>
+                        <div class="card-remark">能否要求每个 IP 的 OT 动态可配（和 NPU 一样），提前思考</div>
+                        <div class="card-meta">
+                            <span class="pill pill-blue">6.23 — 7.4</span>
+                            <span>负责人：zwj、yx</span>
                         </div>
                     </div>
                 </div>
@@ -378,62 +434,44 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-title">CPU benchmark</div>
-                        <div class="card-remark">北京已初步调通 SV，等待 mars si 集成完成后移植 CPU，之后软件介入测试</div>
+                        <div class="card-title">nto1+FlexNoc 全用 si 性能对比</div>
                         <div class="card-meta">
-                            <span class="pill pill-blue">进行中</span>
-                            <span>负责人：yx、北京</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">lp6 进度</div>
-                        <div class="card-remark">北京预计 2 周后完成</div>
-                        <div class="card-meta">
-                            <span class="pill pill-blue">进行中</span>
-                            <span>负责人：北京</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">MCN timing 卡 800MHz</div>
-                        <div class="card-remark">改 floorplan，等待 gxy 反馈，可能要一周</div>
-                        <div class="card-meta">
-                            <span class="pill pill-orange">待反馈</span>
-                            <span>负责人：gxy</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-title">地址路由方案</div>
-                        <div class="card-remark">继续按方案 2 进行</div>
-                        <div class="card-meta">
-                            <span class="pill pill-blue">进行中</span>
-                            <span>负责人：xwh、gxy</span>
+                            <span class="pill pill-blue">6.23 — 7.14</span>
+                            <span>负责人：gxy、zwj、yx</span>
                         </div>
                     </div>
                 </div>
-                <div class="level">
-                    <div class="level-tag l-gray">🔮 后续</div>
-                    <div class="card">
-                        <div class="card-title">rga_inst 集成 nto1（128bit→si 转换）</div>
-                        <div class="card-remark">rga_inst 中已集成 nto1，这是 128bit 到 si 的必须转换。待办：加 ISP 的 nto1</div>
-                        <div class="card-progress">🔥 rga 马上跑通，下午编 1M 固件看 rga，明天编 2M 跑 ISP</div>
-                        <div class="card-meta">
-                            <span class="pill pill-orange">🔥 进行中</span>
-                            <span>负责人：yx</span>
-                        </div>
-                    </div>
+<div class="level-tag l-gray">🔮 后续</div>
                     <div class="card">
                         <div class="card-title">合见/帕拉丁中移植 lp6 环境，调通 base case</div>
                         <div class="card-remark">合见平台看波形不好抓，后续不好 debug。level1 中 lp6 完成后开始</div>
                         <div class="card-meta">
-                            <span class="pill pill-gray">6.16 — 7.15</span>
+                            <span class="pill pill-gray">待定</span>
                             <span>负责人：wzg、yx</span>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-title">IP 性能需求表修改（动态 OT 配置思路）</div>
+                        <div class="card-title">lp6 的 mars 搭建方案 + bv 验证方案</div>
+                        <div class="card-remark">列出 lp6 新特性 excel 表，等待 level1 完成 lp6 后开始</div>
                         <div class="card-meta">
-                            <span class="pill pill-gray">6.22 — 7.15</span>
-                            <span>负责人：zwj</span>
+                            <span class="pill pill-gray">待定</span>
+                            <span>负责人：wzg、yx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">shaping 功能替代方案（urgent/mask 模块）</div>
+                        <div class="card-remark">si-tower 没有 shaping 功能，需在 noc 和控制器间加 urgent/mask 模块做替代</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">待定</span>
+                            <span>负责人：all</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">8 通道交织策略评估（lp6）</div>
+                        <div class="card-remark">交织评估，通道间互堵状态评估。ROB 前移后互堵问题应减轻</div>
+                        <div class="card-meta">
+                            <span class="pill pill-gray">6.16 — 6.23</span>
+                            <span>负责人：yx、xwh、wzg、linp</span>
                         </div>
                     </div>
 
